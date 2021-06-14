@@ -1,0 +1,451 @@
+@import '../../shared-styles/colors';
+@import '../../shared-styles/mixins';
+.leaf{
+position: absolute;
+left: 90%;
+animation: anim  20s ease-in-out infinite;
+transition-duration: 9s;
+}
+.leaf:nth-child(1){
+  left: 80%;
+  animation: anim 15s ease-in-out infinite;
+}
+.leaf:nth-child(2){
+  left: 60%;
+  animation: anim 20s ease-in-out infinite;
+}
+.leaf:nth-child(3){
+  left: 10%;
+  animation: anim 25s ease-in-out infinite;
+}
+@keyframes anim{
+  0%{
+    top:-10%;
+    transform: translateX(15px)
+    rotate(0deg);}
+    20%{
+      top:-10%;
+      transform:translateX(-15px)
+      rotate(45deg);}
+      60%{
+        top:-10%;
+        transform: translateX(-15px)
+        rotate(180deg);}
+        80%{
+          top:-10%;
+          transform: translateX(-15px)
+          rotate(180deg);}
+          100%{
+            top:110%;
+            transform: translateX(-15px)
+            rotate(225deg);}
+}
+.leaf2{
+  height: 50px;
+    transform-style: preserve-3d;
+} 
+.DailyCaloriesFormFirstWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.DailyCaloriesFormWrapper {
+  padding-top: 30px;
+  width: 100%;
+  font-family: 'Verdana';
+  // margin-bottom: 40px;
+}
+.DailyCaloriesFormGeneralWrapper {
+  margin-bottom: 23px;
+  // margin-bottom: 0;
+
+}
+.DailyCaloriesFormTitle {
+  font-family: VerdanaBold, sans-serif;
+  color: $main-text;
+  font-size: 18px;
+  line-height: 1.444;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.DailyCaloriesFormBloodTitle {
+  color: $secondary-text;
+  font-size: 14px;
+  line-height: 1.215;
+  font-weight: 700;
+  margin-bottom: 5px;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.DailyCaloriesForm {
+  width: 240px;
+  margin: 0 auto;
+  // margin-bottom: 60px;
+  // height: 354px;
+}
+.DailyCaloriesFormBloodWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  // margin-bottom: 42px;
+}
+.DailyCaloriesFormFieldsWrapper {
+  position: relative;
+  margin-bottom: 6px;
+}
+.DailyCaloriesFormInput {
+  font-family: 'VerdanaBold';
+  font-size: 14px;
+  line-height: 1.215;
+  letter-spacing: 0.04em;
+  margin-top: 1px;
+  color: $secondary-text;
+  padding: 0.6em;
+  width: 239px;
+  border: none;
+  border-bottom: 1px solid $secondary-text;
+  background: transparent;
+  outline: none;
+  &::placeholder {
+    color: rgba(155, 159, 170, 0.5);
+    font-size: 14px;
+  }
+  @include for-size(tablet) {
+    display: flex;
+    width: 240px;
+  }
+}
+.DailyCaloriesFormFieldsLabelText {
+  // margin-top: 4px;
+  font-family: 'VerdanaBold';
+  color: rgba(155, 159, 170, 0.5);
+  display: inline-block;
+  height: 17px;
+  font-size: 12px;
+  line-height: 1.215;
+  letter-spacing: 0.04em;
+}
+
+
+
+// .validField {
+//   font-family: 'Verdana';
+//   position: absolute;
+//   color: rgb(238, 20, 20);
+//   top: 25px;
+//   left: 0px;
+
+//   @media screen and (min-width: 650px) {
+//     top: 35px;
+//   }
+
+//   font-size: 12px;
+//   line-height: 1.415;
+//   letter-spacing: 0.04em;
+// }
+
+
+
+@mixin same-size($sz) {
+	width: $sz;
+	height: $sz;
+}
+
+// // loader wrapper - can be used as a backdrop to obscure the rest of the page or given a transparent background/use hsla/rgba
+// .loader__wrap {
+// 	position: fixed;
+// 	left: 0;
+// 	top: 0;
+// 	@include same-size(100%);
+// 	display: flex;
+// 	z-index: 1; // fine for this demo
+// }
+
+// // container for animation
+// .loader {
+// 	--sz: 7rem;
+// 	width: calc(var(--sz) * 2);
+// 	height: var(--sz);
+// 	margin: auto; // centers along both main and cross axis in flex containers
+// 	display: flex;
+// 	justify-content: space-evenly;
+// }
+
+// // each half of the animation container
+// .loader__sq {
+// 	// size of each loader piece circle/triangle;
+// 	--p-sz: calc(var(--sz) / 4);
+// 	// margin offset so each half of the container overlaps a bit
+// 	--m-offset: calc((var(--p-sz) * -1) * 0.75);
+// 	position: relative;
+// 	display: flex;
+// 	align-items: flex-end;
+// 	justify-content: space-evenly;
+// 	height: 100%;
+// 	width: 100%;
+
+// 	&::before,
+// 	&::after {
+// 		@include same-size(var(--p-sz));
+// 		content: "";
+// 		position: relative;
+// 		// transform is what's being animated
+// 		transform: translateY(calc((var(--sz) - var(--p-sz)) * -1));
+//     // animation: loader-box-bounce 0.6s cubic-bezier(.20, .05, .29, .76)
+// 		 animation: loader-box-bounce 0.6s cubic-bezier(0.4, 0.5, 0.4, 0.95)
+// 			calc(var(--i) * 0.06s) infinite alternate-reverse;
+// 	}
+
+// 	&:first-of-type {
+// 		margin-right: var(--m-offset);
+
+// 		// first el animated and first visual element
+// 		&::before {
+// 			--i: 1;
+//       display: flex;
+//       justify-content: center;
+//       background-image: url(../../img/bananasmall.png);
+//       width: 55px;
+//       height: 55px;
+//       background-size: 55px 55px;
+//       background-repeat: no-repeat;
+// 			// border: 3px solid #ff7ab5;
+// 			border-radius: 50%;
+// 		}
+
+// 		// second element visually; third el animated
+// 		&::after {
+// 			--i: 3;
+//       display: flex;
+//       justify-content: center;
+//       background-image: url(../../img/strawberry.png);
+//       width: 55px;
+//       height: 55px;
+//       background-size: 55px 55px;
+//     background-repeat: no-repeat;
+// 			// background-color: #c643fb;
+// 			// make the loader pieces triangles in supporting browsers
+// 			@supports (clip-path: circle()) {
+//         clip-path: polygon(79% -78%, 103% 101%, 0% 100%);
+// 				// clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+// 			}
+// 		}
+// 	}
+
+// 	&:nth-of-type(2) {
+    
+// 		// third element visually; 2nd el animated
+// 		&::before {
+// 			--i: 2;
+//       display: flex;
+//       justify-content: center;
+//       background-image: url(../../img/pear.png);
+//       width: 55px;
+//       height: 55px;
+//       background-size: 55px 55px;
+//       background-repeat: no-repeat;
+		
+// 		}
+// 		// fourth element visually, fourth el animated
+// 		&::after {
+// 			--i: 4;
+// 		  display: flex;
+//       justify-content: center;
+//       background-image: url(../../img/pineapple.png);
+//       width: 55px;
+//       height: 55px;
+//       background-size: 55px 55px;
+//       background-repeat: no-repeat;
+	
+			
+// 			@supports (clip-path: circle()) {
+// 				border-radius: 0;
+//         clip-path: polygon(79% -78%, 103% 101%, 0% 100%);
+// 				// clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+// 			}
+// 		}
+
+// 	}
+// }
+
+// @keyframes loader-box-bounce {
+// 	to {
+// 		transform: translateY(0);
+// 	}
+// }
+
+
+
+label.errorMessage ~ .DailyCaloriesFormFieldsLabelText {
+  display: none;
+}
+.errorInput {
+  border-bottom: 1px solid red;
+  background-color: rgba(228, 161, 161, 0.1);
+}
+.errorMessage {
+  font-family: VerdanaBold, sans-serif;
+  color: red;
+  display: inline-block;
+  height: 17px;
+  font-size: 12px;
+  line-height: 1.215;
+  letter-spacing: 0.04em;
+}
+.DailyCaloriesFormLabel {
+  color: $main-text;
+}
+.DailyCaloriesFormButton {
+  display: block;
+  margin: 0 auto;
+}
+
+[type='radio']:checked,
+[type='radio']:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+[type='radio'] + label,
+[type='radio'] + label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+[type='radio'] + label:before,
+[type='radio'] + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  background: #fff;
+}
+[type='radio'] + label:after,
+[type='radio'] + label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: $accent;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+[type='radio']:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+[type='radio']:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+@media screen and (min-width: 650px) {
+  .DailyCaloriesFormWrapper {
+    width: 605px;
+    padding-top: 100px;
+    margin: 0;
+  }
+  .DailyCaloriesFormGeneralWrapper {
+    display: flex;
+    margin-bottom: 23px;
+  }
+  .DailyCaloriesFormFieldsContainer {
+    margin-right: 30px;
+  }
+  .DailyCaloriesFormFirstWrapper {
+    flex-direction: row;
+  }
+  .DailyCaloriesFormTitle {
+    font-family: VerdanaBold, sans-serif;
+    font-size: 30px;
+    line-height: 1.529;
+    margin-bottom: 60px;
+  }
+  .DailyCaloriesFormInput {
+    font-family: 'VerdanaBold';
+    font-size: 14px;
+    line-height: 1.215;
+    letter-spacing: 0.04em;
+    margin-top: 1px;
+    margin-bottom: 21px;
+    color: $secondary-text;
+    padding: 0.6em;
+    width: 239px;
+    border: none;
+    border-bottom: 1px solid $secondary-text;
+    background: transparent;
+  }
+  .DailyCaloriesFormFieldsLabelText {
+    font-family: 'VerdanaBold';
+    color: rgba(155, 159, 170, 0.5);
+    display: inline-block;
+    height: 17px;
+    font-size: 14px;
+    line-height: 1.215;
+    letter-spacing: 0.04em;
+  }
+  .errorMessage {
+    font-size: 14px;
+  }
+  .errorInput {
+    border-bottom: 1px solid red;
+    background-color: rgba(228, 161, 161, 0.1);
+  }
+  .DailyCaloriesForm {
+    width: 510px;
+    // height: 290px;
+  }
+  .DailyCaloriesFormBloodTitle {
+    margin-bottom: 19px;
+    color: rgba(155, 159, 170, 0.5);
+  }
+  .DailyCaloriesFormFieldsWrappers {
+    margin-bottom: 0;
+    margin-right: 31px;
+  }
+  .DailyCaloriesFormButton {
+    margin: 0;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .DailyCaloriesFormWrapper {
+    width: 605px;
+    padding-top: 137px;
+  }
+  .DailyCaloriesFormTitle {
+    font-family: VerdanaBold, sans-serif;
+    font-size: 34px;
+    line-height: 1.205;
+    margin-bottom: 68px;
+  }
+  .DailyCaloriesForm {
+    width: 522px;
+  }
+  .DailyCaloriesFormButton {
+    margin-left: auto;
+    // margin-right: -12px;
+  }
+}
+.SmallLoaderContainerHome {
+  position: absolute;
+  top: 83%;
+  left: 40%;
+  @include for-size(tablet) {
+    top: 66%;
+    left: 50%;
+  }
+  @include for-size(desktop) {
+    top: 90%;
+    left: 50%;
+  }
+}
