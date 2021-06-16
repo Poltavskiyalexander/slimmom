@@ -1,52 +1,101 @@
 @import '../../shared-styles/colors';
 @import '../../shared-styles/mixins';
 .leaf{
-position: absolute;
-left: 90%;
-animation: anim  20s ease-in-out infinite;
-transition-duration: 9s;
+  position: absolute;
+  left: 90%;
+  animation: anim  20s linear infinite;
+  transition-duration: 9s;
+  height: 40px;
+  }
+
+.leaf2{
+    height: 40px;  
 }
+
+.cont div {
+  position: absolute;
+  left: 90%;
+} 
+.cont2 div {
+  transform: scale(2) rotateY(180deg);
+  filter: blur(2px);
+}
+
 .leaf:nth-child(1){
-  left: 80%;
-  animation: anim 15s ease-in-out infinite;
+  left:22%;
+  animation: anim 18s linear infinite;
+animation-delay: -7s;
 }
 .leaf:nth-child(2){
   left: 60%;
-  animation: anim 20s ease-in-out infinite;
+   animation: anim 16s linear infinite;
+   animation-delay: -5s;
 }
 .leaf:nth-child(3){
-  left: 10%;
-  animation: anim 25s ease-in-out infinite;
+  left: 48%;
+   animation: anim 20s linear infinite;
+   animation-delay: -3s;
+}
+.leaf:nth-child(4){
+  left: 53%;
+   animation: anim 21s linear infinite;
+   animation-delay: -5s
+}
+.leaf:nth-child(5){
+  left: 12%;
+   animation: anim 14s linear infinite;
+   animation-delay: -6s;
+}
+
+.leaf:nth-child(6){
+  left: 44%;
+   animation: anim 22s linear infinite;
+   animation-delay: -2s;
+}
+.leaf:nth-child(7){
+  left: 51%;
+   animation: anim 22s linear infinite;
+}
+.leaf:nth-child(8){
+  left: 30%;
+   animation: anim 14s linear infinite;
+   animation-delay: -5s;
 }
 @keyframes anim{
   0%{
+    opacity: 0;
     top:-10%;
     transform: translateX(15px)
-    rotate(0deg);}
-    20%{
+    rotate(0deg);
+  }
+    10%{
       top:-10%;
+      opacity: 1;
       transform:translateX(-15px)
       rotate(45deg);}
-      60%{
+     20%{
+        top:-10%;
+        transform: translateX(-20px)
+        rotate(85deg);}
+     60%{
         top:-10%;
         transform: translateX(-15px)
-        rotate(180deg);}
-        80%{
-          top:-10%;
-          transform: translateX(-15px)
-          rotate(180deg);}
-          100%{
-            top:110%;
-            transform: translateX(-15px)
-            rotate(225deg);}
+        rotate(90deg);}
+      80%{
+        top:-10%;
+        transform: translateX(25px)
+        rotate(130deg);}
+      100%{
+        top:110%;
+        transform: translateX(-15px)
+        rotate(225deg);
+          }
 }
-.leaf2{
-  height: 50px;
-    transform-style: preserve-3d;
-} 
+
 .DailyCaloriesFormFirstWrapper {
   display: flex;
   flex-direction: column;
+ 
 }
 .DailyCaloriesFormWrapper {
   padding-top: 30px;
@@ -124,155 +173,6 @@ transition-duration: 9s;
   line-height: 1.215;
   letter-spacing: 0.04em;
 }
-
-
-
-// .validField {
-//   font-family: 'Verdana';
-//   position: absolute;
-//   color: rgb(238, 20, 20);
-//   top: 25px;
-//   left: 0px;
-
-//   @media screen and (min-width: 650px) {
-//     top: 35px;
-//   }
-
-//   font-size: 12px;
-//   line-height: 1.415;
-//   letter-spacing: 0.04em;
-// }
-
-
-
-@mixin same-size($sz) {
-	width: $sz;
-	height: $sz;
-}
-
-// // loader wrapper - can be used as a backdrop to obscure the rest of the page or given a transparent background/use hsla/rgba
-// .loader__wrap {
-// 	position: fixed;
-// 	left: 0;
-// 	top: 0;
-// 	@include same-size(100%);
-// 	display: flex;
-// 	z-index: 1; // fine for this demo
-// }
-
-// // container for animation
-// .loader {
-// 	--sz: 7rem;
-// 	width: calc(var(--sz) * 2);
-// 	height: var(--sz);
-// 	margin: auto; // centers along both main and cross axis in flex containers
-// 	display: flex;
-// 	justify-content: space-evenly;
-// }
-
-// // each half of the animation container
-// .loader__sq {
-// 	// size of each loader piece circle/triangle;
-// 	--p-sz: calc(var(--sz) / 4);
-// 	// margin offset so each half of the container overlaps a bit
-// 	--m-offset: calc((var(--p-sz) * -1) * 0.75);
-// 	position: relative;
-// 	display: flex;
-// 	align-items: flex-end;
-// 	justify-content: space-evenly;
-// 	height: 100%;
-// 	width: 100%;
-
-// 	&::before,
-// 	&::after {
-// 		@include same-size(var(--p-sz));
-// 		content: "";
-// 		position: relative;
-// 		// transform is what's being animated
-// 		transform: translateY(calc((var(--sz) - var(--p-sz)) * -1));
-//     // animation: loader-box-bounce 0.6s cubic-bezier(.20, .05, .29, .76)
-// 		 animation: loader-box-bounce 0.6s cubic-bezier(0.4, 0.5, 0.4, 0.95)
-// 			calc(var(--i) * 0.06s) infinite alternate-reverse;
-// 	}
-
-// 	&:first-of-type {
-// 		margin-right: var(--m-offset);
-
-// 		// first el animated and first visual element
-// 		&::before {
-// 			--i: 1;
-//       display: flex;
-//       justify-content: center;
-//       background-image: url(../../img/bananasmall.png);
-//       width: 55px;
-//       height: 55px;
-//       background-size: 55px 55px;
-//       background-repeat: no-repeat;
-// 			// border: 3px solid #ff7ab5;
-// 			border-radius: 50%;
-// 		}
-
-// 		// second element visually; third el animated
-// 		&::after {
-// 			--i: 3;
-//       display: flex;
-//       justify-content: center;
-//       background-image: url(../../img/strawberry.png);
-//       width: 55px;
-//       height: 55px;
-//       background-size: 55px 55px;
-//     background-repeat: no-repeat;
-// 			// background-color: #c643fb;
-// 			// make the loader pieces triangles in supporting browsers
-// 			@supports (clip-path: circle()) {
-//         clip-path: polygon(79% -78%, 103% 101%, 0% 100%);
-// 				// clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-// 			}
-// 		}
-// 	}
-
-// 	&:nth-of-type(2) {
-    
-// 		// third element visually; 2nd el animated
-// 		&::before {
-// 			--i: 2;
-//       display: flex;
-//       justify-content: center;
-//       background-image: url(../../img/pear.png);
-//       width: 55px;
-//       height: 55px;
-//       background-size: 55px 55px;
-//       background-repeat: no-repeat;
-		
-// 		}
-// 		// fourth element visually, fourth el animated
-// 		&::after {
-// 			--i: 4;
-// 		  display: flex;
-//       justify-content: center;
-//       background-image: url(../../img/pineapple.png);
-//       width: 55px;
-//       height: 55px;
-//       background-size: 55px 55px;
-//       background-repeat: no-repeat;
-	
-			
-// 			@supports (clip-path: circle()) {
-// 				border-radius: 0;
-//         clip-path: polygon(79% -78%, 103% 101%, 0% 100%);
-// 				// clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-// 			}
-// 		}
-
-// 	}
-// }
-
-// @keyframes loader-box-bounce {
-// 	to {
-// 		transform: translateY(0);
-// 	}
-// }
-
 
 
 label.errorMessage ~ .DailyCaloriesFormFieldsLabelText {

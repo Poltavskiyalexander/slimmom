@@ -91,12 +91,22 @@ const {
     return (
 
       <div className={styles.DailyCaloriesFormWrapper}>
-        <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/> </div>
-        <div className={styles.leaf} ><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/> </div>
-        <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/> </div>
-        <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/> </div>
+          <div className={styles.cont}>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf} src={leaf} alt={"leaf2"}/></div>
+        </div>
 
-    
+        <div className={`${styles.cont} ${styles.cont2}`}>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf} src={leaf} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf} src={leaf} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+       </div> 
         <h2 className={styles.DailyCaloriesFormTitle}>
           {isAuth
             ? 'Узнай свою суточную норму калорий'
