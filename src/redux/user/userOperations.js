@@ -1,5 +1,4 @@
 import userActions from './userActions';
-
 import api from '../../services/backend.service';
 
 const getProductListHelper = (date, dispatch) => {
