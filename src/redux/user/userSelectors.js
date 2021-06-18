@@ -7,20 +7,20 @@ const getCurrentDayId = (state) => state.user.currentDayId;
 const getUserId = (state) => state.user.id;
 const getSummaries = (state) => state.user.summaries;
 const getUserInfo = (state) => state.user.userData;
-const getUserDataDailyRate = (state) => state.user.userData.dailyRate;
+const getUserDataDailyRate = (state) => state.user.userData.dailyRate; //для только что зареганного польз-ля
 const getCurrentDay = (state) => state.user.currentDay;
 
 const selectors = {
-	getProductsSelectors,
-	getDaySummary,
-	getnotAllowedProducts,
-	getProducts,
-	getCalories,
-	getUserId,
-	getCurrentDayId,
-	getCurrentDay,
-	getUserDataDailyRate,
-	getSummaries,
-	getUserInfo
+  getProductsSelectors,
+  getDaySummary,
+  getnotAllowedProducts,
+  getProducts,
+  getCalories,
+  getUserId,
+  getCurrentDayId,
+  getCurrentDay,
+  getUserDataDailyRate,
+  getSummaries,
+  getUserInfo,
 };
 export default selectors;
