@@ -18,6 +18,7 @@ import globalSelectors from '../../redux/global/globalSelectors';
 import SmallLoader from '../../components/shared/SmallLoader';
 // import withAuth from '../hocs/withAuth';
 
+import leaf from '../../img/leaf.png' // relative path to image 
 import leaf2 from '../../img/leaf2.png' // relative path to image 
 // debugger
 const formSchema = Yup.object().shape({
@@ -90,7 +91,7 @@ const {
 
     return (
       <div className={styles.DailyCaloriesFormWrapper}>
-        <div className={styles.cont}>
+       <div className={styles.cont}>
         <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/></div>
         <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
         <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/></div>
