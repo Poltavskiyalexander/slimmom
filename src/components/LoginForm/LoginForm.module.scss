@@ -1,5 +1,5 @@
-@import "../../shared-styles/colors";
-@import "../../shared-styles/mixins";
+@import '../../shared-styles/colors';
+@import '../../shared-styles/mixins';
 
 .loginPage {
   padding-top: 40px;
@@ -12,14 +12,12 @@
     }
   }
 }
-
 .formLabel {
   position: relative;
   width: fit-content;
 }
-
 .validField {
-  font-family: "Verdana";
+  font-family: 'Verdana';
   position: absolute;
   color: rgb(238, 20, 20);
   top: 40px;
@@ -29,18 +27,16 @@
   line-height: 1.415;
   letter-spacing: 0.04em;
 }
-
 .loginTitle {
   margin-bottom: 60px;
 
   color: $accent;
 
-  font-family: "GothamPro-Bold";
+  font-family: 'GothamPro-Bold';
   text-transform: uppercase;
   line-height: 1.1;
   letter-spacing: 0.04em;
 }
-
 .loginForm {
   display: flex;
   flex-direction: column;
@@ -49,19 +45,16 @@
     align-items: flex-start;
   }
 }
-
 .formLabel .errorInput {
   border: none;
   border-bottom: 1px solid red;
   background-color: rgba(228, 161, 161, 0.1);
 }
-
 .errorInput::placeholder {
   color: red;
 }
-
 .login {
-  font-family: "Verdana";
+  font-family: 'Verdana';
   margin-bottom: 40px;
   height: 36px;
   width: 289px;
@@ -74,9 +67,8 @@
   border: none;
   border-bottom: 1px solid $secondary-text;
 }
-
 .password {
-  font-family: "Verdana";
+  font-family: 'Verdana';
   margin-bottom: 60px;
   height: 36px;
   width: 289px;
@@ -89,7 +81,6 @@
   border: none;
   border-bottom: 1px solid $secondary-text;
 }
-
 .buttons {
   display: flex;
   flex-direction: column;
@@ -101,7 +92,6 @@
     }
   }
 }
-
 .buttons > button:last-child {
   margin-bottom: 0;
   @include for-size(tablet) {

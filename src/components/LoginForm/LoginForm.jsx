@@ -1,28 +1,28 @@
-import React from "react";
-import { connect } from "react-redux";
-import { authOperations, authActions } from "../../redux/auth";
-import globalSelectors from "../../redux/global/globalSelectors";
-import Decoration from "../Decoration";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import Button from "../shared/Button";
-import css from "./LoginForm.module.scss";
+import React from 'react';
+import { connect } from 'react-redux';
+import { authOperations, authActions } from '../../redux/auth';
+import globalSelectors from '../../redux/global/globalSelectors';
+import Decoration from '../Decoration';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import Button from '../shared/Button';
+import css from './LoginForm.module.scss';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
-    .min(2, "Некорректная длинна поля")
-    .max(50, "Превышен лимит символов")
-    .required("Обязательное поле *"),
+    .min(2, 'Некорректная длинна поля')
+    .max(50, 'Превышен лимит символов')
+    .required('Обязательное поле *'),
   password: Yup.string()
-    .required("Обязательное поле *")
-    .min(8, "Некорректная длинна поля"),
+    .required('Обязательное поле *')
+    .min(8, 'Некорректная длинна поля'),
 });
 
-const LoginForm = (props) => {
+const LoginForm = props => {
   const handleClick = () => {
-    props.history.push("/register");
+    props.history.push('/register');
   };
-  const handleSubmit = (values) => {
+  const handleSubmit = values => {
     props.login(values);
   };
 
@@ -34,7 +34,7 @@ const LoginForm = (props) => {
           <h2 className={css.loginTitle}>Вход</h2>
 
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ email: '', password: '' }}
             onSubmit={handleSubmit}
             validationSchema={SignupSchema}
           >
@@ -43,7 +43,7 @@ const LoginForm = (props) => {
                 <label className={css.formLabel}>
                   <Field
                     className={`${css.login} ${
-                      errors.email && touched.email ? css.errorInput : ""
+                      errors.email && touched.email ? css.errorInput : ''
                     }`}
                     type="email"
                     name="email"
@@ -59,7 +59,7 @@ const LoginForm = (props) => {
                 <label className={css.formLabel}>
                   <Field
                     className={`${css.password} ${
-                      errors.password && touched.password ? css.errorInput : ""
+                      errors.password && touched.password ? css.errorInput : ''
                     }`}
                     type="password"
                     name="password"
@@ -90,7 +90,7 @@ const LoginForm = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   error: globalSelectors.getError(state),
   test: state,
 });
