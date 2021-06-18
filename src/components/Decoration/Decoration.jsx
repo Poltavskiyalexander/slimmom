@@ -16,7 +16,7 @@ class Decoration extends Component {
           <div className="dec-leaves"></div>
           <div className="dec-banana"></div>
       </section>
-     );
+    );
   }
 }
  

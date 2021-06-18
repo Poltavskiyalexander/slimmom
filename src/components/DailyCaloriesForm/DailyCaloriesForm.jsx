@@ -1,19 +1,25 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+ import React, { Component, useEffect , useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import {
-  getDailyRate,
-  getDailyRateWithId,
-} from '../../redux/user/userOperations';
-import userSelectors from '../../redux/user/userSelectors';
-import { connect } from 'react-redux';
+// import {
+//   getDailyRate,
+//   getDailyRateWithId,
+// } from '../../redux/user/userOperations';
+import * as UserOperations from '../../redux/user/userOperations';
+import   userSelectors from '../../redux/user/userSelectors';
+// import { connect } from 'react-redux';
 import Button from '../shared/Button';
 import styles from './DailyCaloriesForm.module.scss';
 import Modal from '../Modal';
+import AuthSelectors from '../../redux/auth/authSelectors';
 import globalSelectors from '../../redux/global/globalSelectors';
 import SmallLoader from '../../components/shared/SmallLoader';
-import withAuth from '../hocs/withAuth';
+// import withAuth from '../hocs/withAuth';
 
+import leaf2 from '../../img/leaf2.png' // relative path to image 
+// debugger
 const formSchema = Yup.object().shape({
   height: Yup.number()
     .min(100, 'Укажите значение от 100')
@@ -33,49 +39,73 @@ const formSchema = Yup.object().shape({
     .required('Желаемый вес*'),
 });
 
-class DailyCaloriesForm extends Component {
-  state = {
-    showModal: false,
+
+function DailyCaloriesForm() {
+  const [ showModal, setShowModal] = useState(false);
+
+const dispatch = useDispatch();
+
+const userId = useSelector(userSelectors.getUserId);
+const userInfo = useSelector(userSelectors.getUserInfo);
+const isLoading = useSelector(globalSelectors.getLoading);
+ const isAuth = useSelector(AuthSelectors.getToken);
+
+
+const toggleModal = () => {
+
+  setShowModal(showModal=>!showModal)
+
+};
+
+const getCalculations = values => {
+  const userCharacteristics = {
+    height: +values.height,
+    weight: +values.weight,
+    age: +values.age,
+    desiredWeight: +values.desiredWeight,
+    bloodType: +values.bloodType,
   };
 
-  toggleModal = () => {
-    this.setState(prevState => ({
-      showModal: !prevState.showModal,
-    }));
-  };
+ 
 
-  getCalculations = values => {
-    const userCharacteristics = {
-      height: +values.height,
-      weight: +values.weight,
-      age: +values.age,
-      desiredWeight: +values.desiredWeight,
-      bloodType: +values.bloodType,
-    };
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 1000);
-    if (!this.props.userId) {
-      this.props.getDailyRate(userCharacteristics);
-      this.toggleModal();
-    } else {
-      this.props.getDailyRateWithId(userCharacteristics, this.props.userId);
-    }
-  };
 
-  render() {
-    const {
-      height,
-      age,
-      weight,
-      desiredWeight,
-      bloodType,
-    } = this.props.userInfo;
+  if (!userId) {
+    dispatch(UserOperations.getDailyRate(userCharacteristics));
+
+    toggleModal();
+  } else {
+    dispatch(UserOperations.getDailyRateWithId(userCharacteristics,userId));
+    
+  }
+};
+const {
+  height,
+  age,
+  weight,
+  desiredWeight,
+  bloodType,
+} = userInfo;
+
+
+
     return (
       <div className={styles.DailyCaloriesFormWrapper}>
+        <div className={styles.cont}>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf2} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf} src={leaf} alt={"leaf2"}/></div>
+        </div>
+
+        <div className={`${styles.cont} ${styles.cont2}`}>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf} src={leaf} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf} src={leaf} alt={"leaf2"}/></div>
+        <div className={styles.leaf}><img className={styles.leaf2} src={leaf} alt={"leaf"}/></div>
+       </div> 
         <h2 className={styles.DailyCaloriesFormTitle}>
-          {this.props.isAuth
+          {isAuth
             ? 'Узнай свою суточную норму калорий'
             : 'Посчитай свою суточную норму калорий прямо сейчас'}
         </h2>
@@ -90,7 +120,7 @@ class DailyCaloriesForm extends Component {
           }}
           validationSchema={formSchema}
           onSubmit={values => {
-            this.getCalculations(values);
+           getCalculations(values);
           }}
         >
           {({ errors, touched }) => (
@@ -263,41 +293,26 @@ class DailyCaloriesForm extends Component {
               <Button
                 type="submit"
                 className={`primary-button ${styles.DailyCaloriesFormButton}`}
-                disabled={this.props.isLoading}
+                disabled={isLoading}
               >
                 Похудеть
               </Button>
               <div className={styles.SmallLoaderContainerHome}>
-                {this.props.isloading && <SmallLoader />}
+                {isLoading && <SmallLoader />}
               </div>
             </Form>
           )}
         </Formik>
-        {this.state.showModal &&
-          !this.props.isLoading &&
-          !this.props.noModal && (
+        {showModal &&
+          !isLoading &&
+          (
             <Modal
-              toggleModal={this.toggleModal}
-              showModal={this.state.showModal}
+              toggleModal={toggleModal}
+              showModal={showModal}
             />
           )}
       </div>
     );
-  }
 }
+export default DailyCaloriesForm;
 
-const mapStateToProps = state => ({
-  isLoading: globalSelectors.getLoading(state),
-  userId: userSelectors.getUserId(state),
-  userInfo: userSelectors.getUserInfo(state),
-});
-
-const mapDispatchToProps = {
-  getDailyRate,
-  getDailyRateWithId,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withAuth(DailyCaloriesForm));

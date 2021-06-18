@@ -1,6 +1,5 @@
-import userActions from "./userActions";
-
-import api from "../../services/backend.service";
+import userActions from './userActions';
+import api from '../../services/backend.service';
 
 const getProductListHelper = (date, dispatch) => {
   dispatch(userActions.getProductsRequest());
@@ -20,7 +19,7 @@ const getProductListHelper = (date, dispatch) => {
       }
       dispatch(userActions.getProductsSuccess(payload));
     })
-    .catch((err) => dispatch(userActions.getProductsError(err)));
+    .catch(err => dispatch(userActions.getProductsError(err)));
 };
 
 const getCurrentUser = () => (dispatch, getState) => {
@@ -40,8 +39,8 @@ const getCurrentUser = () => (dispatch, getState) => {
       const { username, id, userData } = data;
       if (data.days && data.days.length) {
         const today = new Date().toJSON().slice(0, 10);
-        const todaySummary = data.days.find((day) => day.date === today)
-          ? data.days.find((day) => day.date === today).daySummary
+        const todaySummary = data.days.find(day => day.date === today)
+          ? data.days.find(day => day.date === today).daySummary
           : null;
         if (!todaySummary) {
           const userInfo = {
@@ -71,10 +70,10 @@ const getCurrentUser = () => (dispatch, getState) => {
         dispatch(userActions.getCurrentUserSuccess(userInfo));
       }
     })
-    .catch((err) => dispatch(userActions.getCurrentUserError(err)));
+    .catch(err => dispatch(userActions.getCurrentUserError(err)));
 };
 
-const getDailyRate = (userCharacteristics) => (dispatch) => {
+const getDailyRate = userCharacteristics => dispatch => {
   dispatch(userActions.getDailyRateRequest());
 
   api
@@ -82,7 +81,7 @@ const getDailyRate = (userCharacteristics) => (dispatch) => {
     .then(({ data }) => {
       return dispatch(userActions.getDailyRateSuccess(data));
     })
-    .catch((err) => dispatch(userActions.getDailyRateWithIdError(err)));
+    .catch(err => dispatch(userActions.getDailyRateWithIdError(err)));
 };
 
 const getDailyRateWithId =
@@ -124,20 +123,20 @@ const addProduct = (product) => (dispatch) => {
         dispatch(userActions.addProductSuccess(payload));
       }
     })
-    .catch((err) => {
+    .catch(err => {
       if (
         err.response.data.message === '"productId" is not allowed to be empty'
       ) {
         dispatch(
           userActions.addProductError(
-            "Please, choose a product from dropdown list"
-          )
+            'Please, choose a product from dropdown list',
+          ),
         );
       } else dispatch(userActions.addProductError(err.message));
     });
 };
 
-const getProducts = (date) => (dispatch, getState) => {
+const getProducts = date => (dispatch, getState) => {
   const {
     auth: { accessToken },
   } = getState();
@@ -163,10 +162,10 @@ const getProducts = (date) => (dispatch, getState) => {
       }
       dispatch(userActions.getProductsSuccess(payload));
     })
-    .catch((err) => dispatch(userActions.getProductsError(err)));
+    .catch(err => dispatch(userActions.getProductsError(err)));
 };
 
-const deleteEatenProduct = (product, date) => (dispatch) => {
+const deleteEatenProduct = (product, date) => dispatch => {
   dispatch(userActions.deleteEatenProductRequest());
   api
     .deleteEatenProduct(product)
@@ -174,10 +173,10 @@ const deleteEatenProduct = (product, date) => (dispatch) => {
       getProductListHelper(date, dispatch);
 
       return dispatch(
-        userActions.deleteEatenProductSuccess(data.newDaySummary)
+        userActions.deleteEatenProductSuccess(data.newDaySummary),
       );
     })
-    .catch((err) => dispatch(userActions.deleteEatenProductError(err)));
+    .catch(err => dispatch(userActions.deleteEatenProductError(err)));
 };
 
 export {

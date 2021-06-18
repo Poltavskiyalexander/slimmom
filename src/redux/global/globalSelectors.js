@@ -3,6 +3,6 @@ const getError = state => state.error;
 
 const selectors = {
   getLoading,
-  getError
+  getError,
 };
-export default selectors
+export default selectors;
