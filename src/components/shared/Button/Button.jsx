@@ -14,5 +14,4 @@ Button.defaultProps = {
     clickHandler: null,
     type: "button"
 }
-
 export default Button;
