@@ -9,7 +9,6 @@ class Decoration extends Component {
     }else if(this.props.isCalculationPage) {
       addStyle = "-calculation"
     }
-      
     return ( 
       <section className={`decoration${addStyle}`} >
           <div className='dec-spot'></div>

@@ -7,8 +7,8 @@ const Button = (props) => {
     return (
         <button type={type} className={className} onClick={clickHandler && clickHandler}>{children}</button>
     ) 
-};
 
+};
 Button.defaultProps = {
     className: "primary-button",
     clickHandler: null,
