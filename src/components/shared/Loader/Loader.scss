@@ -42,6 +42,11 @@
   height: 200px;
   display: inline-block;
   overflow: hidden;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
 }
 
 .ldio-rv349ubc7lm {
