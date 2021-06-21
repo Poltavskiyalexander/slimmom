@@ -1,5 +1,5 @@
 // import React, { Component } from 'react';
- import React, { Component, useEffect , useState } from 'react';
+ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 //   getDailyRateWithId,
 // } from '../../redux/user/userOperations';
 import * as UserOperations from '../../redux/user/userOperations';
-import   userSelectors from '../../redux/user/userSelectors';
+import  userSelectors from '../../redux/user/userSelectors';
 // import { connect } from 'react-redux';
 import Button from '../shared/Button';
 import styles from './DailyCaloriesForm.module.scss';

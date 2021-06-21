@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import css from './RegistrationForm.module.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { authActions } from '../../redux/auth';
+// import  authActions  from '../../redux/auth';
 import globalSelectors from '../../redux/global/globalSelectors';
+import  authActions from '../../redux/auth/authActions'
 import Decoration from '../Decoration';
 
 const RegisterSchema = Yup.object().shape({
