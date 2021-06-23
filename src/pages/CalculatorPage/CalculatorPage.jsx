@@ -13,18 +13,27 @@ function CalculatorPage() {
   const day = useSelector(userSelectors.getCurrentDay);
   const dailyRate = useSelector(userSelectors.getCalories);
   const userDataDailyRate = useSelector(userSelectors.getUserDataDailyRate);
+  const userId = useSelector(userSelectors.getUserId);
+
+
 
   useEffect(() => {
-    if (dailyRate && userDataDailyRate) {
+    if (dailyRate == null) {
+      return
+    } else{
+    if (!dailyRate && !userDataDailyRate) {
       return;
     }
    if (!day) {
-      const today = new Date().toJSON().slice(0, 10);
-      dispatch(UserOperations.getProducts({ date: today }));
+        const today = new Date().toJSON().slice(0, 10);
+        dispatch(UserOperations.getProducts({ date: today }));
+       
     } else {
-      dispatch(UserOperations.getProducts({ date:day }));
+       dispatch(UserOperations.getProducts({ date:day }));
+    
     }
-  }, [ dispatch]);
+  }
+  }, [dispatch]);
 
      return (
           <Fragment>

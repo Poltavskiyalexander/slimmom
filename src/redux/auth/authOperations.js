@@ -39,6 +39,7 @@ const login = credentials => dispatch => {
           summaries: [],
         },
       };
+
       dispatch(authActions.loginSuccess(userInfo));
     })
     .catch(err => {

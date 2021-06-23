@@ -84,25 +84,24 @@ const getDailyRate = userCharacteristics => dispatch => {
     .catch(err => dispatch(userActions.getDailyRateWithIdError(err)));
 };
 
-const getDailyRateWithId =
-  (userCharacteristics, userId, date) => (dispatch) => {
-    dispatch(userActions.getDailyRateWithIdRequest());
-    api
-      .getDailyRate(userCharacteristics, userId)
-      .then(({ data }) => {
-        if (!date) {
-          date = new Date().toJSON().slice(0, 10);
-        }
-        getProductListHelper(date, dispatch);
+const getDailyRateWithId = (userCharacteristics, userId, date) => dispatch => {
+  dispatch(userActions.getDailyRateWithIdRequest());
+  api
+    .getDailyRate(userCharacteristics, userId)
+    .then(({ data }) => {
+      if (!date) {
+        date = new Date().toJSON().slice(0, 10);
+      }
+      getProductListHelper(date, dispatch);
 
-        const { summaries, dailyRate, notAllowedProducts } = data;
-        const payload = { summaries, dailyRate, notAllowedProducts };
-        return dispatch(userActions.getDailyRateWithIdSuccess(payload));
-      })
-      .catch((err) => dispatch(userActions.getDailyRateWithIdError(err)));
-  };
+      const { summaries, dailyRate, notAllowedProducts } = data;
+      const payload = { summaries, dailyRate, notAllowedProducts };
+      return dispatch(userActions.getDailyRateWithIdSuccess(payload));
+    })
+    .catch(err => dispatch(userActions.getDailyRateWithIdError(err)));
+};
 
-const addProduct = (product) => (dispatch) => {
+const addProduct = product => dispatch => {
   dispatch(userActions.addProductRequest());
   api
     .addProduct(product)
@@ -144,9 +143,7 @@ const getProducts = date => (dispatch, getState) => {
   if (!accessToken) return;
 
   api.setToken(accessToken);
-
   dispatch(userActions.getProductsRequest());
-
   api
     .getProducts(date)
     .then(({ data }) => {
@@ -171,7 +168,6 @@ const deleteEatenProduct = (product, date) => dispatch => {
     .deleteEatenProduct(product)
     .then(({ data }) => {
       getProductListHelper(date, dispatch);
-
       return dispatch(
         userActions.deleteEatenProductSuccess(data.newDaySummary),
       );

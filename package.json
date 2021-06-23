@@ -4,7 +4,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Xoms/slimmom.git"
+    "url": "git+https://github.com/Poltavskiyalexander/slimmom.git"
   },
   "resolutions": {
     "styled-components": "^5"
@@ -38,7 +38,7 @@
     "yup": "^0.32.8"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "eact-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

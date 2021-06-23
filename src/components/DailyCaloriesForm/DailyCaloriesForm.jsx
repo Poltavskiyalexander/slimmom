@@ -67,9 +67,6 @@ const getCalculations = values => {
     bloodType: +values.bloodType,
   };
 
- 
-
-
   if (!userId) {
     dispatch(UserOperations.getDailyRate(userCharacteristics));
 
@@ -86,8 +83,6 @@ const {
   desiredWeight,
   bloodType,
 } = userInfo;
-
-
 
     return (
       <div className={styles.DailyCaloriesFormWrapper}>
